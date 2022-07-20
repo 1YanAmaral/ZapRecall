@@ -1,9 +1,13 @@
-import LandingPage from './LandingPage';
+import LandingPage from "./LandingPage";
+import Cards from "./Cards";
 
-function App () {
-    return (
-        <LandingPage />
-    );
+function App() {
+  return (
+    <>
+      <LandingPage />
+      <Cards />
+    </>
+  );
 }
 
 export default App;

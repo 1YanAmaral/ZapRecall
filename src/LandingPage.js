@@ -1,11 +1,18 @@
-function LandingPage () {
-    return (
-        <div className="page">
-            <img className="logo" src="assets/logo.png" />
-            <div className="title">ZapRecall</div>
-            <div className="start">Iniciar Recall!!</div>
-        </div>
-    );
+import React from "react";
+
+function LandingPage() {
+    const [visible, setVisible] = React.useState("page");
+    function callCards() {    
+    setVisible("hidden");
+  }
+
+  return (
+    <div className={visible}>
+      <img className="logo" src="assets/logo.png" />
+      <div className="title">ZapRecall</div>
+      <div className="start" onClick={callCards}>Iniciar Recall!</div>
+    </div>
+  );
 }
 
 export default LandingPage;

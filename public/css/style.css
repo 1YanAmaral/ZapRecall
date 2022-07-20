@@ -1,5 +1,7 @@
 @media (max-width: 614px) {
- 
+    * {
+        box-sizing: border-box;
+    }
 
   .page {
     width: 100vw;
@@ -14,6 +16,12 @@
   .logo {
     width: 135px;
     height: 160px;
+  }
+
+  .logo-small {
+    margin: auto 20px;
+    width: 70px;
+    height: 70px;
   }
 
   .title {
@@ -31,6 +39,7 @@
     align-items: center;
     text-align: center;
     color: #ffffff;
+    margin: 13px auto;
   }
 
   .start {
@@ -50,5 +59,37 @@
     font-size: 18px;
     text-align: center;
     cursor: pointer;
+    margin: 30px auto;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .questions {
+    display: flex;
+    flex-direction: column;
+    margin: auto auto;
+  }
+
+  .question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 65px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #333333;
+    padding: 15px;
+  }
+
+  ion-icon[name="play-outline"] {
+    font-size: 35px;
   }
 }

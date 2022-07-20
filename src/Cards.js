@@ -1,3 +1,16 @@
+import React from "react";
+
+function Question(content) {
+  return (
+    <div className="question">
+      {content}
+      <ion-icon name="play-outline"></ion-icon>
+    </div>
+  );
+}
+
+const questions = ["Pergunta 1", "Pergunta 2", "Pergunta 3", "Pergunta 4"];
+
 function Cards() {
   return (
     <div className="page">
@@ -6,11 +19,14 @@ function Cards() {
         ZapRecall
       </div>
       <div className="questions">
+        {questions.map((question) => (
           <div className="question">
-              Pergunta 1
-              <ion-icon name="play-outline"></ion-icon>
+            {question}
+            <ion-icon name="play-outline"></ion-icon>
           </div>
+        ))}
       </div>
+      <div className="done">Concluídos</div>
     </div>
   );
 }

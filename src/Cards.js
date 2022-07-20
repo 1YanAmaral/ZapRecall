@@ -1,6 +1,6 @@
 import React from "react";
 
-function Question(content) {
+function Question({content}) {
   return (
     <div className="question">
       {content}
@@ -19,12 +19,9 @@ function Cards() {
         ZapRecall
       </div>
       <div className="questions">
-        {questions.map((question) => (
-          <div className="question">
-            {question}
-            <ion-icon name="play-outline"></ion-icon>
-          </div>
-        ))}
+         {questions.map((question) => (
+          <Question content={question}/>
+        ))} 
       </div>
       <div className="done">Concluídos</div>
     </div>

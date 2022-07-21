@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./Footer";
 
 function QuestionTemplate({ index, question, count }) {
   const [show, setShow] = React.useState(true);
@@ -7,12 +6,14 @@ function QuestionTemplate({ index, question, count }) {
   const [status, setStatus] = React.useState("question");
   const [icon, setIcon] = React.useState("play-outline");
 
-
   if (show) {
     return (
-      <div className={status} onClick={() => {
-        setShow(false);
-      }}>
+      <div
+        className={status}
+        onClick={() => {
+          setShow(false);
+        }}
+      >
         Pergunta {index + 1}
         <ion-icon
           name={icon}
@@ -22,24 +23,61 @@ function QuestionTemplate({ index, question, count }) {
         ></ion-icon>
       </div>
     );
-  } if(isFlipped) {
-    return (      
+  }
+  if (isFlipped) {
+    return (
       <div className="card-question">
         {question.Q}
-        <img src="assets/setinha.png" alt="" onClick={() => {setIsFlipped(false)}}/>
-      </div>
-    );
-  } if(!isFlipped) {
-    return (
-      <div className="card-answer">
-        {question.A}
-        <div className="wrong" onClick={() => {setShow(true); setIcon("close-circle"); setStatus("wrong-answer"); count()}}>Não lembrei</div>
-        <div className="almost" onClick={() => {setShow(true); setIcon("help-circle"); setStatus("almost-answer"); count()}}>Quase não lembrei</div>
-        <div className="right" onClick={() => {setShow(true); setIcon("checkmark-circle"); setStatus("right-answer"); count()}}>Zap!</div>
+        <img
+          src="assets/setinha.png"
+          alt=""
+          onClick={() => {
+            setIsFlipped(false);
+          }}
+        />
       </div>
     );
   }
-
+  if (!isFlipped) {
+    return (
+      <div className="card-answer">
+        {question.A}
+        <div
+          className="wrong"
+          onClick={() => {
+            setShow(true);
+            setIcon("close-circle");
+            setStatus("wrong-answer");
+            count("close-circle");
+          }}
+        >
+          Não lembrei
+        </div>
+        <div
+          className="almost"
+          onClick={() => {
+            setShow(true);
+            setIcon("help-circle");
+            setStatus("almost-answer");
+            count("help-circle");
+          }}
+        >
+          Quase não lembrei
+        </div>
+        <div
+          className="right"
+          onClick={() => {
+            setShow(true);
+            setIcon("checkmark-circle");
+            setStatus("right-answer");
+            count("checkmark-circle");
+          }}
+        >
+          Zap!
+        </div>
+      </div>
+    );
+  }
 }
 
 const questions = [
@@ -54,8 +92,12 @@ const questions = [
 
 function Cards({ invisible }) {
   const [count, setCount] = React.useState(0);
-  function addCount () {
-    setCount(count +1)
+  const [answerIcons, setAnswerIcons] = React.useState([]);
+  function addCount(icon) {
+    if (count <= questions.length - 1) {
+      setCount(count + 1);
+      setAnswerIcons([...answerIcons, icon]);
+    }
   }
 
   return (
@@ -66,10 +108,22 @@ function Cards({ invisible }) {
       </div>
       <div className="questions">
         {questions.map((questions, index) => (
-          <QuestionTemplate key={index} index={index} question={questions} count={addCount} />
+          <QuestionTemplate
+            key={index}
+            index={index}
+            question={questions}
+            count={addCount}
+          />
         ))}
       </div>
-      <div className="done">{count}/{questions.length} Concluídos</div>
+      <div className="done">
+        {count}/{questions.length} Concluídos
+        <div className="answer-icons">
+          {answerIcons.map((icon) => (
+            <ion-icon name={icon}></ion-icon>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

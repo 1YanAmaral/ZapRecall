@@ -1,15 +1,21 @@
 import React from "react";
+import Footer from "./Footer";
 
-function QuestionTemplate({ index, question }) {
+function QuestionTemplate({ index, question, count }) {
   const [show, setShow] = React.useState(true);
   const [isFlipped, setIsFlipped] = React.useState(true);
+  const [status, setStatus] = React.useState("question");
+  const [icon, setIcon] = React.useState("play-outline");
+
 
   if (show) {
     return (
-      <div className="question">
+      <div className={status} onClick={() => {
+        setShow(false);
+      }}>
         Pergunta {index + 1}
         <ion-icon
-          name="play-outline"
+          name={icon}
           onClick={() => {
             setShow(false);
           }}
@@ -27,10 +33,9 @@ function QuestionTemplate({ index, question }) {
     return (
       <div className="card-answer">
         {question.A}
-        {/* <img src="assets/setinha.png" alt="" onClick={() => {setIsFlipped(true)}}/> */}
-        <div className="wrong">Não lembrei</div>
-        <div className="almost">Quase não lembrei</div>
-        <div className="right">Zap!</div>
+        <div className="wrong" onClick={() => {setShow(true); setIcon("close-circle"); setStatus("wrong-answer"); count()}}>Não lembrei</div>
+        <div className="almost" onClick={() => {setShow(true); setIcon("help-circle"); setStatus("almost-answer"); count()}}>Quase não lembrei</div>
+        <div className="right" onClick={() => {setShow(true); setIcon("checkmark-circle"); setStatus("right-answer"); count()}}>Zap!</div>
       </div>
     );
   }
@@ -48,6 +53,11 @@ const questions = [
 ];
 
 function Cards({ invisible }) {
+  const [count, setCount] = React.useState(0);
+  function addCount () {
+    setCount(count +1)
+  }
+
   return (
     <div className={invisible}>
       <div className="title">
@@ -56,10 +66,10 @@ function Cards({ invisible }) {
       </div>
       <div className="questions">
         {questions.map((questions, index) => (
-          <QuestionTemplate key={index} index={index} question={questions} />
+          <QuestionTemplate key={index} index={index} question={questions} count={addCount} />
         ))}
       </div>
-      <div className="done">Concluídos</div>
+      <div className="done">{count}/{questions.length} Concluídos</div>
     </div>
   );
 }

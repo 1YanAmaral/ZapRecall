@@ -1,8 +1,6 @@
 import React from "react";
 
-function LandingPage({visible, callCards}) {
-  
-
+function LandingPage({ visible, callCards }) {
   return (
     <div className={visible}>
       <img className="logo" alt="" src="assets/logo.png" />

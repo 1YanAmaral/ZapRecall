@@ -25,9 +25,12 @@ function QuestionTemplate({ index, question }) {
     );
   } if(!isFlipped) {
     return (
-      <div className="card-question">
+      <div className="card-answer">
         {question.A}
-        <img src="assets/setinha.png" alt="" onClick={() => {setIsFlipped(true)}}/>
+        {/* <img src="assets/setinha.png" alt="" onClick={() => {setIsFlipped(true)}}/> */}
+        <div className="wrong">Não lembrei</div>
+        <div className="almost">Quase não lembrei</div>
+        <div className="right">Zap!</div>
       </div>
     );
   }

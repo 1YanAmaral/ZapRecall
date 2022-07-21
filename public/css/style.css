@@ -113,7 +113,9 @@
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
   }
 
-  .card-question {
+  .card-question, .card-answer {
+    display: flex;
+    flex-direction: column;
     width: 300px;
     height: 130px;
     background-color: #FFFFD4;
@@ -128,6 +130,42 @@
   }
 
   .card-question img {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+  }
+
+  .wrong, .almost, .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 85px;
+    height: 37px;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #ffffff;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+  }
+  .wrong {
+    background-color: #FF3030;
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+  }
+  
+  .almost {
+    background-color: #FF922E;
+    position: absolute;
+    bottom: 5px;
+    left: 108px;
+  }
+
+  .right {
+    background-color: #2FBE34;
     position: absolute;
     bottom: 5px;
     right: 10px;

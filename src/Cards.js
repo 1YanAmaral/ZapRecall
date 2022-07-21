@@ -1,7 +1,8 @@
 import React from "react";
 
-function QuestionTemplate({ index }) {
+function QuestionTemplate({ index, question }) {
   const [show, setShow] = React.useState(true);
+  const [isFlipped, setIsFlipped] = React.useState(true);
 
   if (show) {
     return (
@@ -15,14 +16,22 @@ function QuestionTemplate({ index }) {
         ></ion-icon>
       </div>
     );
-  } else {
+  } if(isFlipped) {
+    return (      
+      <div className="card-question">
+        {question.Q}
+        <img src="assets/setinha.png" alt="" onClick={() => {setIsFlipped(false)}}/>
+      </div>
+    );
+  } if(!isFlipped) {
     return (
-      <div className="unflipped">
-        O que é JSX?
-        <img src="assets/setinha.png" alt="" onClick={() => {setShow(true)}}/>
+      <div className="card-question">
+        {question.A}
+        <img src="assets/setinha.png" alt="" onClick={() => {setIsFlipped(true)}}/>
       </div>
     );
   }
+
 }
 
 const questions = [
@@ -39,12 +48,12 @@ function Cards({ invisible }) {
   return (
     <div className={invisible}>
       <div className="title">
-        <img className="logo-small" src="assets/logo-pequeno.png" />
+        <img className="logo-small" alt="" src="assets/logo-pequeno.png" />
         ZapRecall
       </div>
       <div className="questions">
         {questions.map((questions, index) => (
-          <QuestionTemplate key={index} index={index} />
+          <QuestionTemplate key={index} index={index} question={questions} />
         ))}
       </div>
       <div className="done">Concluídos</div>

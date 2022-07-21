@@ -1,27 +1,51 @@
 import React from "react";
 
-function Question({content}) {
-  return (
-    <div className="question">
-      {content}
-      <ion-icon name="play-outline"></ion-icon>
-    </div>
-  );
+function QuestionTemplate({ index }) {
+  const [show, setShow] = React.useState(true);
+
+  if (show) {
+    return (
+      <div className="question">
+        Pergunta {index + 1}
+        <ion-icon
+          name="play-outline"
+          onClick={() => {
+            setShow(false);
+          }}
+        ></ion-icon>
+      </div>
+    );
+  } else {
+    return (
+      <div className="unflipped">
+        O que é JSX?
+        <img src="assets/setinha.png" alt="" onClick={() => {setShow(true)}}/>
+      </div>
+    );
+  }
 }
 
-const questions = ["Pergunta 1", "Pergunta 2", "Pergunta 3", "Pergunta 4"];
+const questions = [
+  { Q: "O que é JSX?", A: "Uma extensão de linguagem do JavaScript" },
+  {
+    Q: "O React é __",
+    A: "uma biblioteca JavaScript para construção de interfaces",
+  },
+  { Q: "Componentes devem iniciar com", A: "letra maiúscula" },
+  { Q: "Podemos colocar __ dentro do JSX ", A: "expressões" },
+];
 
-function Cards() {
+function Cards({ invisible }) {
   return (
-    <div className="page">
+    <div className={invisible}>
       <div className="title">
         <img className="logo-small" src="assets/logo-pequeno.png" />
         ZapRecall
       </div>
       <div className="questions">
-         {questions.map((question) => (
-          <Question content={question}/>
-        ))} 
+        {questions.map((questions, index) => (
+          <QuestionTemplate key={index} index={index} />
+        ))}
       </div>
       <div className="done">Concluídos</div>
     </div>

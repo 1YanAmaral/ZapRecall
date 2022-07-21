@@ -80,7 +80,7 @@ function QuestionTemplate({ index, question, count }) {
   }
 }
 
-const questions = [
+const objQuestions = [
   { Q: "O que é JSX?", A: "Uma extensão de linguagem do JavaScript" },
   {
     Q: "O React é __",
@@ -89,6 +89,20 @@ const questions = [
   { Q: "Componentes devem iniciar com", A: "letra maiúscula" },
   { Q: "Podemos colocar __ dentro do JSX ", A: "expressões" },
 ];
+
+const questions = []
+function createCards () {
+  objQuestions.forEach((value) => {
+    questions.push({ ...value });
+  });
+
+  questions.sort(() => Math.random() - 0.5);
+  console.log(questions);
+  return questions;
+}
+
+createCards();
+
 
 function Cards({ invisible }) {
   const [count, setCount] = React.useState(0);
@@ -107,6 +121,7 @@ function Cards({ invisible }) {
         ZapRecall
       </div>
       <div className="questions">
+        
         {questions.map((questions, index) => (
           <QuestionTemplate
             key={index}
@@ -119,8 +134,8 @@ function Cards({ invisible }) {
       <div className="done">
         {count}/{questions.length} Concluídos
         <div className="answer-icons">
-          {answerIcons.map((icon) => (
-            <ion-icon name={icon}></ion-icon>
+          {answerIcons.map((icon, index) => (
+            <ion-icon key={index} name={icon}></ion-icon>
           ))}
         </div>
       </div>

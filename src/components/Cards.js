@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./Footer";
 
 function QuestionTemplate({ index, question, count }) {
   const [show, setShow] = React.useState(true);
@@ -13,6 +14,21 @@ function QuestionTemplate({ index, question, count }) {
         onClick={() => {
           setShow(false);
         }}
+      >
+        Pergunta {index + 1}
+        <ion-icon
+          name={icon}
+          onClick={() => {
+            setShow(false);
+          }}
+        ></ion-icon>
+      </div>
+    );
+  }
+  if (status !== "question") {
+    return (
+      <div
+        className={status}
       >
         Pergunta {index + 1}
         <ion-icon
@@ -97,7 +113,7 @@ function createCards () {
   });
 
   questions.sort(() => Math.random() - 0.5);
-  console.log(questions);
+  
   return questions;
 }
 
@@ -108,7 +124,7 @@ function Cards({ invisible }) {
   const [count, setCount] = React.useState(0);
   const [answerIcons, setAnswerIcons] = React.useState([]);
   function addCount(icon) {
-    if (count <= questions.length - 1) {
+    if (count < questions.length) {
       setCount(count + 1);
       setAnswerIcons([...answerIcons, icon]);
     }
@@ -121,7 +137,6 @@ function Cards({ invisible }) {
         ZapRecall
       </div>
       <div className="questions">
-        
         {questions.map((questions, index) => (
           <QuestionTemplate
             key={index}
@@ -131,14 +146,7 @@ function Cards({ invisible }) {
           />
         ))}
       </div>
-      <div className="done">
-        {count}/{questions.length} Concluídos
-        <div className="answer-icons">
-          {answerIcons.map((icon, index) => (
-            <ion-icon key={index} name={icon}></ion-icon>
-          ))}
-        </div>
-      </div>
+       <Footer count={count} questions={questions.length} answerIcons={answerIcons} /> 
     </div>
   );
 }

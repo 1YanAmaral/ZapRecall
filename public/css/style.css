@@ -101,7 +101,6 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 70px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -114,12 +113,13 @@
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
   }
 
-  .card-question, .card-answer {
+  .card-question,
+  .card-answer {
     display: flex;
     flex-direction: column;
     width: 300px;
     height: 130px;
-    background-color: #FFFFD4;
+    background-color: #ffffd4;
     font-family: "Recursive";
     font-style: normal;
     font-weight: 400;
@@ -136,7 +136,9 @@
     right: 10px;
   }
 
-  .wrong, .almost, .right {
+  .wrong,
+  .almost,
+  .right {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,27 +154,29 @@
     border-radius: 5px;
   }
   .wrong {
-    background-color: #FF3030;
+    background-color: #ff3030;
     position: absolute;
     bottom: 5px;
     left: 10px;
   }
-  
+
   .almost {
-    background-color: #FF922E;
+    background-color: #ff922e;
     position: absolute;
     bottom: 5px;
     left: 108px;
   }
 
   .right {
-    background-color: #2FBE34;
+    background-color: #2fbe34;
     position: absolute;
     bottom: 5px;
     right: 10px;
   }
 
-  .wrong-answer, .almost-answer, .right-answer {
+  .wrong-answer,
+  .almost-answer,
+  .right-answer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -187,28 +191,65 @@
     font-size: 16px;
     padding: 15px;
     margin: 12px auto;
-    color: #FF3030;
+    color: #ff3030;
     text-decoration: line-through;
   }
 
   .almost-answer {
-    color: #FF922E;
+    color: #ff922e;
   }
 
   .right-answer {
-    color: #2FBE34;
+    color: #2fbe34;
   }
 
   ion-icon[name="close-circle"] {
-    color: #FF3030;
+    color: #ff3030;
     font-size: 30px;
   }
   ion-icon[name="help-circle"] {
-    color: #FF922E;
+    color: #ff922e;
     font-size: 30px;
   }
   ion-icon[name="checkmark-circle"] {
-    color: #2FBE34;
+    color: #2fbe34;
     font-size: 30px;
+  }
+
+  .congrats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #333333;
+    background-color: #ffffff;
+    margin: 15px auto;
+  }
+
+  .congrats img {
+    margin: auto 10px;
+  }
+
+  .message {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #333333;
+    margin-bottom: 15px;
+  }
+
+  .answer-icons {
+    margin: 10px auto; 
   }
 }

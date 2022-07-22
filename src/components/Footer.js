@@ -1,11 +1,29 @@
-function Footer({ count, questions, answerIcons }) {
+function Footer({
+  count,
+  questions,
+  answerIcons,
+  restart
+  // setCount,
+  // setAnswerIcons,
+  // show,
+  // isFlipped,
+  // status,
+  // icon,
+  // setShow,
+  // setIsFlipped,
+  // setStatus,
+  // setIcon,
+  // createCards,
+}) {
   function isWrong(answer) {
     return answer === "close-circle";
   }
 
+  
+
   if (!answerIcons.find(isWrong) && answerIcons.length === questions) {
     return (
-      <div className="done">
+      <div className="done height">
         <div className="congrats">
           <img src="assets/party.png" alt="" />
           Parabéns!
@@ -17,13 +35,16 @@ function Footer({ count, questions, answerIcons }) {
             <ion-icon key={index} name={icon}></ion-icon>
           ))}
         </div>
+        <div className="start" onClick={restart}>
+          REINICIAR RECALL
+        </div>
       </div>
     );
   }
 
   if (answerIcons.find(isWrong) && answerIcons.length === questions) {
     return (
-      <div className="done">
+      <div className="done height">
         <div className="congrats">
           <img src="assets/sad.png" alt="" />
           Putz...
@@ -35,13 +56,16 @@ function Footer({ count, questions, answerIcons }) {
             <ion-icon key={index} name={icon}></ion-icon>
           ))}
         </div>
+        <div className="start" onClick={restart}>
+          REINICIAR RECALL
+        </div>
       </div>
     );
   }
 
   return (
     <div className="done">
-      {count}/{questions} Concluídos
+      <span>{count}/{questions} Concluídos</span>
       <div className="answer-icons">
         {answerIcons.map((icon, index) => (
           <ion-icon key={index} name={icon}></ion-icon>

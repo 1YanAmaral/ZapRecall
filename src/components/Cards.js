@@ -27,9 +27,7 @@ function QuestionTemplate({ index, question, count }) {
   }
   if (status !== "question") {
     return (
-      <div
-        className={status}
-      >
+      <div className={status}>
         Pergunta {index + 1}
         <ion-icon
           name={icon}
@@ -104,23 +102,26 @@ const objQuestions = [
   },
   { Q: "Componentes devem iniciar com", A: "letra maiúscula" },
   { Q: "Podemos colocar __ dentro do JSX ", A: "expressões" },
+  { Q: "O ReactDOM nos ajuda __ ", A: "interagindo com a DOM para colocar componentes React na mesma" },
+  { Q: "Usamos o npm para __  ", A: "gerenciar os pacotes necessários e suas dependências" },
+  { Q: "Usamos props para __", A: "passar diferentes informações para componentes" },
+  { Q: "Usamos estado (state) para __ ", A: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
 ];
 
-const questions = []
-function createCards () {
-  objQuestions.forEach((value) => {
+let questions = [];
+function createCards() {
+    objQuestions.forEach((value) => {
     questions.push({ ...value });
   });
 
   questions.sort(() => Math.random() - 0.5);
-  
+
   return questions;
 }
 
 createCards();
 
-
-function Cards({ invisible }) {
+function Cards({ invisible, setShow, setIsFlipped, setStatus, setIcon }) {
   const [count, setCount] = React.useState(0);
   const [answerIcons, setAnswerIcons] = React.useState([]);
   function addCount(icon) {
@@ -130,9 +131,22 @@ function Cards({ invisible }) {
     }
   }
 
+  function restartRecall() {
+    questions = [];
+    setCount(0);
+    setAnswerIcons([]);
+    setShow=true;
+    setIsFlipped=true;
+    setStatus="question";
+    setIcon="play-outline";
+    createCards();
+    <Cards invisible={invisible}/>
+    console.log(questions);
+  }
+
   return (
     <div className={invisible}>
-      <div className="title">
+      <div className="title-page">
         <img className="logo-small" alt="" src="assets/logo-pequeno.png" />
         ZapRecall
       </div>
@@ -146,7 +160,23 @@ function Cards({ invisible }) {
           />
         ))}
       </div>
-       <Footer count={count} questions={questions.length} answerIcons={answerIcons} /> 
+      <Footer
+        count={count}
+        questions={questions.length}
+        answerIcons={answerIcons}
+        restart={restartRecall}
+        // setCount={setCount}
+        // setAnswerIcons={setAnswerIcons}
+        // show={show}
+        // isFlipped={isFlipped}
+        // status={status}
+        // icon={icon}
+        // setShow={setShow}
+        // setIsFlipped={setIsFlipped}
+        // setStatus={setStatus}
+        // setIcon={setIcon}
+        // createCards={createCards}
+      />
     </div>
   );
 }

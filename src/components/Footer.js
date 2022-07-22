@@ -1,25 +1,7 @@
-function Footer({
-  count,
-  questions,
-  answerIcons,
-  restart
-  // setCount,
-  // setAnswerIcons,
-  // show,
-  // isFlipped,
-  // status,
-  // icon,
-  // setShow,
-  // setIsFlipped,
-  // setStatus,
-  // setIcon,
-  // createCards,
-}) {
+function Footer({ count, questions, answerIcons, restart }) {
   function isWrong(answer) {
     return answer === "close-circle";
   }
-
-  
 
   if (!answerIcons.find(isWrong) && answerIcons.length === questions) {
     return (
@@ -65,7 +47,9 @@ function Footer({
 
   return (
     <div className="done">
-      <span>{count}/{questions} Concluídos</span>
+      <span>
+        {count}/{questions} Concluídos
+      </span>
       <div className="answer-icons">
         {answerIcons.map((icon, index) => (
           <ion-icon key={index} name={icon}></ion-icon>

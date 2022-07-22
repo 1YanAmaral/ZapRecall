@@ -133,14 +133,14 @@ function Cards({ invisible, setShow, setIsFlipped, setStatus, setIcon }) {
 
   function restartRecall() {
     questions = [];
-    setCount(0);
-    setAnswerIcons([]);
     setShow=true;
     setIsFlipped=true;
     setStatus="question";
     setIcon="play-outline";
+    setCount(0);
+    setAnswerIcons([]);
     createCards();
-    <Cards invisible={invisible}/>
+    //<Cards invisible={invisible}/>
     console.log(questions);
   }
 
@@ -165,17 +165,6 @@ function Cards({ invisible, setShow, setIsFlipped, setStatus, setIcon }) {
         questions={questions.length}
         answerIcons={answerIcons}
         restart={restartRecall}
-        // setCount={setCount}
-        // setAnswerIcons={setAnswerIcons}
-        // show={show}
-        // isFlipped={isFlipped}
-        // status={status}
-        // icon={icon}
-        // setShow={setShow}
-        // setIsFlipped={setIsFlipped}
-        // setStatus={setStatus}
-        // setIcon={setIcon}
-        // createCards={createCards}
       />
     </div>
   );

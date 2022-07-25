@@ -131,17 +131,21 @@ function Cards({ invisible, setShow, setIsFlipped, setStatus, setIcon }) {
     }
   }
 
+  const [cards, setCards] = React.useState([]);
+
   function restartRecall() {
-    questions = [];
+    //createCards();
+    //const newCards = questions.map((value) => ({...value}));
+    setCards(createCards())
+    questions = [...cards];
     setShow=true;
     setIsFlipped=true;
     setStatus="question";
     setIcon="play-outline";
     setCount(0);
     setAnswerIcons([]);
-    createCards();
-    //<Cards invisible={invisible}/>
     console.log(questions);
+    
   }
 
   return (
